@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+    text-decoration: underline;
+    font-style: italic;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: lightgrey;
+}
+
+div#right{
+    background-color: blue;
+    margin-left: 75%;
+    text-align: center;
+}
+
+div#left{
+    background-color: red;
+    margin-right: 75%;
+    text-align: center;
+}
