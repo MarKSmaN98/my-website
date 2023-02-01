@@ -6,14 +6,25 @@ h1{
     background-color: lightgrey;
 }
 
-div#right{
-    background-color: blue;
-    margin-left: 75%;
+section#sidebars{
+    border: 10px;
+    border-color:black;
+    border-style: solid;
+    margin: auto;
+}
+
+section#sidebars div{
+    width:50%;
+    float: left;
+    padding: 20px;
+}
+
+section div#right{
+    background-color: rgb(190, 187, 187);
     text-align: center;
 }
 
-div#left{
-    background-color: red;
-    margin-right: 75%;
+section div#left{
+    background-color: rgb(190, 187, 187);
     text-align: center;
 }
