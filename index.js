@@ -45,43 +45,57 @@ renderWeather().then(function() {
 });
 */
 
-renderWeather(x,y) {
+function renderWeather(x,y) {
     const finalArr = new Map();
-    let url = 'https://api.weather.gov/gridpoints/LWX/' + x + ',' + y + '77/forecast/hourly';
-    let iterator = fetch(url);
-    iterator
-        .then(response => {
-            return response.json();
-        })
-        .then(x => {
-            const dataHead = x;
-            const tempArr = dataHead.properties.periods;
+    let url = 'https://api.weather.gov/gridpoints/LWX/' + x + ',' + y + '/forecast/hourly';
+    try {
+        let iterator = fetch(url);
+        iterator
+            .then(response => {
+                return response.json();
+            })
+            .then(x => {
+                const dataHead = x;
+                const tempArr = dataHead.properties.periods;
 
-            let tableHead = document.getElementById("table");
-            let row, cell;
+                let tableMount = document.getElementById("table");
+                if (tableMount.querySelector('table') != null) {
+                    let toDel = tableMount.querySelectorAll('table');
+                    for (let i = 0; i < toDel.length; i++) {
+                        toDel[i].remove();
+                    }
+                }
+                let tableHead = document.createElement('table');
+                tableHead.id = "weatherData";
+                tableMount.appendChild(tableHead);
+                let row, cell;
 
-            let iter, time, temp;
-            iter = 0;
-            for(element in tempArr) {
-                //console.log('iterator = ' + iter);
-                time = tempArr[iter].startTime;
-                time = time.slice(11,16);
-                temp = tempArr[iter].temperature + 'F';
-                //finalArr.set(time, temp);
-                row = tableHead.insertRow(iter);
-                row.insertCell(0).textContent = time;
-                row.insertCell(1).textContent = temp;
-                ++iter;
-            }
+                let iter, time, temp;
+                iter = 0;
+                for(element in tempArr) {
+                    //console.log('iterator = ' + iter);
+                    time = tempArr[iter].startTime;
+                    time = time.slice(11,16);
+                    temp = tempArr[iter].temperature + 'F';
+                    //finalArr.set(time, temp);
+                    row = tableHead.insertRow(iter);
+                    row.insertCell(0).textContent = time + ': ';
+                    row.insertCell(1).textContent = temp;
+                    ++iter;
+                }
 
         
         
         
-            //console.log(time);
-            //console.log(temp);
-            console.log(finalArr);
-            return finalArr;
-        });
+                //console.log(time);
+                //console.log(temp);
+                console.log(finalArr);
+                return finalArr;
+            });
+        }
+    catch {
+        console.error(error);
+    }
 }
 function getValues(){
     let x = document.getElementById("Lat").value;

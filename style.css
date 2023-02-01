@@ -15,8 +15,10 @@ section#sidebars{
 
 section#sidebars div{
     width:50%;
-    float: left;
     padding: 20px;
+    display: flex;
+    border-style: solid;
+    border-color: red;
 }
 
 section div#right{
@@ -27,4 +29,11 @@ section div#right{
 section div#left{
     background-color: rgb(190, 187, 187);
     text-align: center;
+}
+
+#weatherData tr{
+    display: inline-block;
+    background-color: lightslategray;
+    margin-left: 10px;
+    margin-top: 10px;
 }
